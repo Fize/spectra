@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Publish Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Environment & Packaging Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip
+
+      - name: Package Individual Skills
+        run: |
+          mkdir -p release-artifacts
+          
+          # Package each individual skill into its own zip
+          cd skills
+          for skill_dir in */; do
+            skill_name="${skill_dir%/}"
+            echo "Packaging skill: ${skill_name}"
+            zip -r "../release-artifacts/${skill_name}.zip" "${skill_name}" -x "*.DS_Store" "*__pycache__*"
+          done
+          cd ..
+          
+          # Package all skills into one bundle
+          BUNDLE_NAME="spectra-skills-${{ github.ref_name }}.zip"
+          echo "Packaging all skills bundle: ${BUNDLE_NAME}"
+          zip -r "release-artifacts/${BUNDLE_NAME}" skills/ -x "*.DS_Store" "*__pycache__*"
+
+      - name: Create GitHub Release and Upload Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          body: |
+            > 🌌 **Spectra**: Production-grade design, UX, and frontend engineering skills for AI agents. Compatible with Claude Code, Cursor, Antigravity, OpenClaw, and more.
+          files: release-artifacts/*
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+
