@@ -4,6 +4,8 @@
   
   [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
   [![Skills: 8](https://img.shields.io/badge/Skills-8%20Available-purple.svg)](#-skills-overview)
+
+  <p><b>English</b> | <a href="README_zh.md">简体中文</a></p>
 </div>
 
 ---
@@ -77,6 +79,7 @@ graph TD
 ```text
 spectra/
 ├── README.md
+├── README_zh.md
 └── skills/
     ├── brand-identity-design/      # Brand VI system & strategy
     ├── color-system/               # Digital tokens & physical print color
