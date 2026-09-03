@@ -18,22 +18,26 @@
 
 ---
 
-## 🚀 快速上手
+## 🚀 安装与使用
 
-你可以按需引入整个技能包，或仅载入单个技能：
-
-### 全局或项目级引入
-将单个技能文件夹（或整个 `skills/` 目录）复制或软链接到你的 Agent 技能目录中：
+### 通过 ClawHub 安装（推荐）
+所有技能均已发布至 [ClawHub](https://clawhub.ai) 官方商店，你可以使用 `clawhub` CLI 将所需技能直接安装至你的 Agent 环境中：
 
 ```bash
-# 示例：将特定技能复制到本地 Agent 的 skills 目录
-cp -r skills/color-system ~/.agent/skills/
+# 安装单个技能
+clawhub install @fize/color-system
 
-# 或在工作区配置文件中直接引用路径
-# 例如在 Agent 配置文件中：
-# skills:
-#   - path: ./skills/product-ux-workflow/SKILL.md
-#   - path: ./skills/interaction-design-sop/SKILL.md
+# 按需安装产品与前端交互全流程套件
+clawhub install @fize/product-ux-workflow
+clawhub install @fize/interaction-design-sop
+clawhub install @fize/custom-ui-spec
+```
+
+### 本地克隆使用
+你也可以通过克隆本仓库在本地离线或软链接使用：
+
+```bash
+git clone https://github.com/Fize/spectra.git
 ```
 
 每个技能均为自包含模块，内含独立的 `SKILL.md` 指令、参考规约（`references/`）与资源文件（`assets/`）。

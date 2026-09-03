@@ -18,22 +18,26 @@ Compatible with any AI agent or coding assistant that supports standard skill ex
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation & Usage
 
-You can load the entire suite or import individual skills into your agent environment:
-
-### Global or Project Import
-Copy or symlink individual skills (or the entire `skills/` directory) into your agent's skill path:
+### Via ClawHub (Recommended)
+All skills are published on [ClawHub](https://clawhub.ai) and can be installed directly into your agent environment using the `clawhub` CLI:
 
 ```bash
-# Example: Copy a specific skill to your agent's local skills directory
-cp -r skills/color-system ~/.agent/skills/
+# Install individual skills
+clawhub install @fize/color-system
 
-# Or reference directly in your workspace config
-# e.g., in your agent config file:
-# skills:
-#   - path: ./skills/product-ux-workflow/SKILL.md
-#   - path: ./skills/interaction-design-sop/SKILL.md
+# Install product & frontend suites
+clawhub install @fize/product-ux-workflow
+clawhub install @fize/interaction-design-sop
+clawhub install @fize/custom-ui-spec
+```
+
+### Via Local Clone
+Alternatively, clone the repository to use or reference skills locally:
+
+```bash
+git clone https://github.com/Fize/spectra.git
 ```
 
 Each skill is self-contained with its own `SKILL.md`, supporting references, and assets.
